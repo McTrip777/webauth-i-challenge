@@ -1,7 +1,7 @@
 const express = require('express');
 const helmet = require('helmet');
 
-const auth = require('./data/helpers/router/auth.js');
+const auth = require('./data/router/auth.js');
 
 const server = express();
 server.use(helmet());
