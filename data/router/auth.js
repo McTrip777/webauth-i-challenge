@@ -1,6 +1,6 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
-const session = require('express-session');
+// const session = require('express-session');
 const Auth = require('../helpers/authDB.js');
 
 const router = express.Router();
@@ -54,6 +54,20 @@ router.get('/user',restricted, (req,res) => {
         .catch(error => {
             res.send(error)
         })
+})
+
+router.get('/logout', (req, res) => {
+    if(req.session){
+        req.session.destroy(error =>{
+            if(error){
+                res.send(error)
+            }else{
+                res.send('You are logged out')
+            }
+        })
+    }else{
+        res.end();
+    }
 })
 
 module.exports = router;
